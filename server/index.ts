@@ -61,7 +61,6 @@ app.use(
 );
 app.use(express.json({ limit: '10mb' }));
 app.use('/api/', globalLimiter);
-
 // ── Health Check ─────────────────────────────
 app.get('/api/health', (_req: Request, res: Response) => {
   res.json({

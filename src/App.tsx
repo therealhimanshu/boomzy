@@ -32,7 +32,6 @@ export default function App() {
 
   const [launchComplete, setLaunchComplete] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
-
   // Sync scroll positioning to trigger header logo capture
   useEffect(() => {
     const handleScroll = () => {

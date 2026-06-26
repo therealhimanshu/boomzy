@@ -4,7 +4,7 @@ import { getAuth, GoogleAuthProvider, connectAuthEmulator } from 'firebase/auth'
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'mock-api-key',
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'mock-auth-domain',
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'demo-boomzy-ignite',
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'demo-boomzy',
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'mock-storage-bucket',
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || 'mock-sender-id',
   appId: import.meta.env.VITE_FIREBASE_APP_ID || 'mock-app-id',
@@ -20,4 +20,3 @@ if (import.meta.env.DEV) {
 
 export const googleProvider = new GoogleAuthProvider();
 export default app;
-

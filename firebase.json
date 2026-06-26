@@ -6,7 +6,7 @@
   "auth": {
     "providers": {
       "googleSignIn": {
-        "oAuthBrandDisplayName": "Boomzy Ignite",
+        "oAuthBrandDisplayName": "Boomzy",
         "supportEmail": "hello@boomzy.agency"
       }
     }

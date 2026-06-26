@@ -409,11 +409,11 @@ export default function BlackHoleBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 w-full h-full -z-10 pointer-events-none bg-[#03060d]">
+    <div className="fixed inset-0 z-0 w-full h-full pointer-events-none bg-[#03060d]">
       <canvas
         ref={canvasRef}
         id="blackhole"
-        className="w-full h-full"
+        className="absolute inset-0 block w-full h-full"
         aria-hidden="true"
       />
       {/* Dynamic dark vignette overlay to ensure maximum text contrast over the glowing black hole */}

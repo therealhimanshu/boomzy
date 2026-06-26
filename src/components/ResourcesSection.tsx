@@ -186,7 +186,7 @@ export default function ResourcesSection() {
               <div>
                 <h3 className="text-lg font-black text-white mb-1 flex items-center gap-1.5">
                   <Mail className="w-5 h-5 text-brand-primary" />
-                  <span>The Ignite Newsletter</span>
+                  <span>The Boomzy Newsletter</span>
                 </h3>
                 <p className="text-xs text-slate-400 leading-relaxed mb-6">
                   Subscribe to receive our latest 2026 performance playbooks directly in your inbox.

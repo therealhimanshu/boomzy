@@ -63,8 +63,8 @@ export async function requireAdmin(
       email: 'admin@boomzy.agency',
       email_verified: true,
       auth_time: Math.floor(Date.now() / 1000),
-      iss: 'https://securetoken.google.com/demo-boomzy-ignite',
-      aud: 'demo-boomzy-ignite',
+      iss: 'https://securetoken.google.com/demo-boomzy',
+      aud: 'demo-boomzy',
       exp: Math.floor(Date.now() / 1000) + 3600,
     } as any;
     next();

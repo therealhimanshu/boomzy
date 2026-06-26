@@ -1,5 +1,5 @@
 /**
- * Boomzy-Ignite — Express Server Entry Point
+ * Boomzy — Express Server Entry Point
  *
  * Boots the Express application, mounts API routes, and starts listening.
  * Environment variables are loaded from .env via dotenv.
@@ -100,7 +100,7 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 app.listen(PORT, () => {
   console.log(`
   ╔══════════════════════════════════════════╗
-  ║   Boomzy-Ignite API Server              ║
+  ║   Boomzy API Server                     ║
   ║   Running on http://localhost:${PORT}      ║
   ║   Environment: ${(process.env.NODE_ENV ?? 'development').padEnd(24)}║
   ╚══════════════════════════════════════════╝

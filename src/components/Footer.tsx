@@ -1,5 +1,5 @@
 import { useState, FormEvent } from "react";
-import { Link, Send, Github, Linkedin, Instagram, ArrowRight, Sparkles } from "lucide-react";
+import { Send, Github, Linkedin, Instagram, Sparkles } from "lucide-react";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -31,32 +31,32 @@ export default function Footer() {
         
         {/* Brand Corner */}
         <div className="md:col-span-1">
-          <a href="#app-root-container" className="text-3xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary inline-block mb-4">
+          <a href="#hero" className="min-h-11 text-3xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary inline-flex items-center mb-4">
             Boomzy
           </a>
           <p className="text-slate-500 dark:text-slate-300 text-sm leading-relaxed mb-6">
-            Boomzy Ignite is an agile growth-partner performance agency. We engineer conversion-optimized funnels and integrate pipeline data architectures for ambitious enterprises globally.
+            Boomzy is an agile growth-partner performance agency. We engineer conversion-optimized funnels and integrate pipeline data architectures for ambitious enterprises globally.
           </p>
           
           {/* Social Icons */}
           <div className="flex gap-3">
             <a 
               href="#" 
-              className="w-10 h-10 rounded-full bg-slate-200/50 dark:bg-slate-900 border border-slate-300/30 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primary transition-all duration-300"
+              className="w-11 min-w-11 h-11 shrink-0 rounded-full bg-slate-200/50 dark:bg-slate-900 border border-slate-300/30 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primary transition-all duration-300"
               aria-label="Linkedin"
             >
               <Linkedin className="w-4 h-4" />
             </a>
             <a 
               href="#" 
-              className="w-10 h-10 rounded-full bg-slate-200/50 dark:bg-slate-900 border border-slate-300/30 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primary transition-all duration-300"
+              className="w-11 min-w-11 h-11 shrink-0 rounded-full bg-slate-200/50 dark:bg-slate-900 border border-slate-300/30 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primary transition-all duration-300"
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4" />
             </a>
             <a 
               href="#" 
-              className="w-10 h-10 rounded-full bg-slate-200/50 dark:bg-slate-900 border border-slate-300/30 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primary transition-all duration-300"
+              className="w-11 min-w-11 h-11 shrink-0 rounded-full bg-slate-200/50 dark:bg-slate-900 border border-slate-300/30 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primary transition-all duration-300"
               aria-label="Github"
             >
               <Github className="w-4 h-4" />
@@ -70,27 +70,27 @@ export default function Footer() {
             <h4 className="text-[#ff8c00] text-xs font-black tracking-widest uppercase mb-6">Expertise</h4>
             <ul className="space-y-3.5">
               <li>
-                <a href="#services" className="text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-block transition-transform duration-300">
+                <a href="#services" className="min-h-11 text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-flex items-center transition-transform duration-300">
                   SEO &amp; Organic Growth
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-block transition-transform duration-300">
+                <a href="#services" className="min-h-11 text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-flex items-center transition-transform duration-300">
                   Performance Marketing
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-block transition-transform duration-300">
+                <a href="#services" className="min-h-11 text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-flex items-center transition-transform duration-300">
                   Content Strategy Systems
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-block transition-transform duration-300">
+                <a href="#services" className="min-h-11 text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-flex items-center transition-transform duration-300">
                   Social Media Marketing
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-block transition-transform duration-300">
+                <a href="#services" className="min-h-11 text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-flex items-center transition-transform duration-300">
                   Brand Identity Auditing
                 </a>
               </li>
@@ -101,17 +101,17 @@ export default function Footer() {
             <h4 className="text-[#ff8c00] text-xs font-black tracking-widest uppercase mb-6">Company</h4>
             <ul className="space-y-3.5">
               <li>
-                <a href="#proof" className="text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-block transition-transform duration-300">
+                <a href="#contact" className="min-h-11 text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-flex items-center transition-transform duration-300">
                   Case Studies &amp; Audits
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-block transition-transform duration-300">
+                <a href="#contact" className="min-h-11 text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-flex items-center transition-transform duration-300">
                   Contact Us
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-block transition-transform duration-300">
+                <a href="#contact" className="min-h-11 text-slate-500 dark:text-slate-300 hover:text-brand-primary text-sm hover:translate-x-1.5 inline-flex items-center transition-transform duration-300">
                   Careers (Hiring!)
                 </a>
               </li>
@@ -160,10 +160,10 @@ export default function Footer() {
           © 2026 Boomzy Performance Agency. All rights reserved. Registered HQ: Delhi, India.
         </p>
         <div className="flex gap-6">
-          <a href="#" className="text-xs text-slate-400 dark:text-slate-500 hover:text-brand-primary transition-colors">
+          <a href="#" className="min-h-11 inline-flex items-center text-xs text-slate-400 dark:text-slate-500 hover:text-brand-primary transition-colors">
             Privacy Policy
           </a>
-          <a href="#" className="text-xs text-slate-400 dark:text-slate-500 hover:text-brand-primary transition-colors">
+          <a href="#" className="min-h-11 inline-flex items-center text-xs text-slate-400 dark:text-slate-500 hover:text-brand-primary transition-colors">
             Terms of Service
           </a>
         </div>

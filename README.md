@@ -15,5 +15,10 @@ https://ai.studio/apps/2b5d0f6d-1e6c-4725-b62c-8682c0602a1d
 1. Install dependencies:
    `npm install`
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+3. Run the frontend only:
    `npm run dev`
+
+4. Run the frontend and API together for forms, analytics, and admin data:
+   `npm run dev:full`
+
+Analytics calls are disabled by default in frontend-only Vite development to avoid noisy proxy errors when the API server is not running. Set `VITE_ENABLE_DEV_ANALYTICS="true"` when you want to test analytics locally with `npm run dev:full`.

@@ -4,7 +4,7 @@
 
 # Boomzy Website
 
-This project is a Vite/React website deployed on Cloudflare Pages. Public lead submissions are handled by Cloudflare Pages Functions and forwarded to Google Apps Script, which writes into Google Sheets.
+This project is a Vite/React website deployed as a Cloudflare Worker with static assets. Public lead submissions are handled by the Worker API routes and forwarded to Google Apps Script, which writes into Google Sheets.
 
 ## Run Locally
 
@@ -15,11 +15,10 @@ This project is a Vite/React website deployed on Cloudflare Pages. Public lead s
 2. Run the frontend:
    `npm run dev`
 
-The Vite dev server serves the website only. To test Cloudflare Pages Functions locally, build first and run through Wrangler:
+The Vite dev server serves the website only. To test the Cloudflare Worker locally, build first and run through Wrangler:
 
 ```bash
-npm run build
-npx wrangler pages dev dist
+npm run worker:preview
 ```
 
 ## Form Backend
@@ -30,7 +29,7 @@ The active API endpoints are:
 - `GET /api/locations`
 - `GET /api/health`
 
-Set these Cloudflare Pages environment variables:
+Set these Cloudflare Worker runtime secrets:
 
 - `APPS_SCRIPT_WEBHOOK_URL`
 - `APPS_SCRIPT_SHARED_SECRET`

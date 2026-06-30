@@ -144,7 +144,7 @@ export default function App() {
       {/* 1. INITIAL EYE-SAFE EXPLOSION BOOM ANIMATION OVERLAY */}
       <AnimatePresence>
         {!launchComplete && (
-          <Suspense fallback={null}>
+          <Suspense fallback={<div className="fixed inset-0 z-[100] bg-[#02040a]" aria-hidden="true" />}>
             <LaunchBoom
               key="boom-landing-overlay"
               isDark={isDark}
@@ -158,9 +158,10 @@ export default function App() {
       <motion.div
         key="website-structural-content"
         initial={false}
-        animate={{ opacity: launchComplete ? 1 : 0.72 }}
-        transition={{ duration: 0.45, ease: "easeOut" }}
-        className="relative isolate"
+        animate={{ opacity: launchComplete ? 1 : 0 }}
+        transition={{ duration: launchComplete ? 0.45 : 0, ease: "easeOut" }}
+        className={`relative isolate ${launchComplete ? "" : "pointer-events-none"}`}
+        style={{ visibility: launchComplete ? "visible" : "hidden" }}
         aria-hidden={!launchComplete ? true : undefined}
       >
           {/* 3D Black Hole Background (Endless loops in dark mode backdrop) */}

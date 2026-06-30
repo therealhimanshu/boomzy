@@ -7,15 +7,16 @@ interface NavBarProps {
   toggleDarkMode: () => void;
   scrolled: boolean;
   onRelaunch: () => void;
+  launchComplete: boolean;
 }
 
-export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch }: NavBarProps) {
+export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch, launchComplete }: NavBarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Close mobile menu on resizing
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 1024) {
         setMobileMenuOpen(false);
       }
     };
@@ -34,13 +35,13 @@ export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch }:
     >
       <div className="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
         {/* LOGO ZONE: Host of the shared layout name "Boomzy" when scrolled */}
-        <div id="header-logo-anchor" className="flex items-center md:w-32">
-          {scrolled ? (
+        <div id="header-logo-anchor" className="flex items-center lg:w-32">
+          {launchComplete && scrolled ? (
             <motion.a
-              href="#"
+              href="#hero"
               layoutId="boomzy-logo"
-              className="text-2xl md:text-3xl font-black tracking-tighter uppercase cursor-pointer"
-              transition={{ type: "spring", stiffness: 180, damping: 20 }}
+              className="min-h-11 flex items-center text-2xl md:text-3xl font-black tracking-tighter uppercase cursor-pointer"
+              transition={{ layout: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">
                 Boomzy
@@ -53,10 +54,10 @@ export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch }:
         </div>
 
         {/* Navigation Items (Desktop) */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           <a
             href="#services"
-            className="text-sm font-semibold tracking-wide text-slate-600 dark:text-slate-300 hover:text-brand-primary dark:hover:text-brand-primary transition-colors duration-200"
+            className="min-h-11 px-1 flex items-center text-sm font-semibold tracking-wide text-slate-600 dark:text-slate-300 hover:text-brand-primary dark:hover:text-brand-primary transition-colors duration-200"
           >
             Services
           </a>
@@ -82,15 +83,16 @@ export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch }:
           */}
           <a
             href="#contact"
-            className="text-sm font-semibold tracking-wide text-slate-600 dark:text-slate-300 hover:text-brand-primary dark:hover:text-brand-primary transition-colors duration-200"
+            className="min-h-11 px-1 flex items-center text-sm font-semibold tracking-wide text-slate-600 dark:text-slate-300 hover:text-brand-primary dark:hover:text-brand-primary transition-colors duration-200"
           >
             Schedule Call
           </a>
           <button
             onClick={onRelaunch}
             id="relaunch-boom-btn"
-            className="text-xs font-semibold uppercase tracking-widest text-[#ff8c00] flex items-center gap-1 cursor-pointer hover:underline"
+            className="min-h-11 px-1 text-xs font-semibold uppercase tracking-widest text-[#ff8c00] flex items-center gap-1 cursor-pointer hover:underline"
             title="Re-launch explosion effect"
+            aria-label="Re-launch Boom animation"
           >
             <Sparkles className="w-3 h-3 animate-spin" />
             <span>Re-launch Boom</span>
@@ -98,12 +100,12 @@ export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch }:
         </nav>
 
         {/* Right Controls Area */}
-        <div className="flex items-center gap-3 md:w-32 justify-end">
+        <div className="flex items-center gap-3 lg:w-32 justify-end">
           {/* Dark Mode Toggle with custom visual feedback */}
           <button
             onClick={toggleDarkMode}
             id="theme-toggle"
-            className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:scale-105 active:scale-95 transition-all text-slate-700 dark:text-slate-300 cursor-pointer"
+            className="w-11 h-11 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:scale-105 active:scale-95 transition-all text-slate-700 dark:text-slate-300 cursor-pointer"
             aria-label="Toggle Night Mode"
           >
             {isDark ? (
@@ -119,7 +121,10 @@ export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch }:
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             id="mobile-menu-toggle"
-            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 cursor-pointer"
+            className="lg:hidden w-11 h-11 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 cursor-pointer"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-panel"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -134,13 +139,14 @@ export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch }:
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 w-full overflow-hidden bg-white/95 dark:bg-slate-900/95 border-b border-slate-200 dark:border-slate-800 shadow-xl backdrop-blur-lg block md:hidden"
+            id="mobile-nav-panel"
+            className="absolute top-full left-0 w-full overflow-hidden bg-white/95 dark:bg-slate-900/95 border-b border-slate-200 dark:border-slate-800 shadow-xl backdrop-blur-lg block lg:hidden"
           >
             <div className="px-6 py-8 flex flex-col gap-6">
               <a
                 href="#services"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-lg font-semibold text-slate-800 dark:text-slate-100 flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3"
+                className="min-h-12 text-lg font-semibold text-slate-800 dark:text-slate-100 flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3"
               >
                 <span>Growth Services</span>
                 <span className="text-brand-primary text-xs font-bold font-mono">01</span>
@@ -174,7 +180,7 @@ export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch }:
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-lg font-semibold text-slate-800 dark:text-slate-100 flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3"
+                className="min-h-12 text-lg font-semibold text-slate-800 dark:text-slate-100 flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3"
               >
                 <span>Schedule Call</span>
                 <span className="text-brand-primary text-xs font-bold font-mono">05</span>
@@ -198,7 +204,7 @@ export default function NavBar({ isDark, toggleDarkMode, scrolled, onRelaunch }:
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full h-12 rounded-xl flex items-center justify-center gap-2 ignite-gradient text-white font-bold text-sm tracking-wide uppercase shadow"
                 >
-                  <span>Ignite Growth Session</span>
+                  <span>Book Growth Session</span>
                   <Rocket className="w-4 h-4" />
                 </a>
               </div>

@@ -326,11 +326,35 @@ export default function BlackHoleBackground() {
 
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Resize Handler
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.8);
-      const w = Math.max(1, Math.floor(window.innerWidth * dpr));
-      const h = Math.max(1, Math.floor(window.innerHeight * dpr));
+    let lastCssWidth = 0;
+    let lastCssHeight = 0;
+
+    const getStableViewportSize = () => {
+      const cssWidth = window.innerWidth;
+      const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
+      const cssHeight = Math.round(viewportHeight);
+
+      return { cssWidth, cssHeight };
+    };
+
+    // Mobile browsers resize the visual viewport while scrolling as browser chrome collapses.
+    // Ignore those small height-only changes so the background does not reframe mid-scroll.
+    const resize = (force = false) => {
+      const { cssWidth, cssHeight } = getStableViewportSize();
+      const widthChanged = Math.abs(cssWidth - lastCssWidth) > 2;
+      const heightChanged = Math.abs(cssHeight - lastCssHeight) > 120;
+
+      if (!force && !widthChanged && !heightChanged) {
+        return;
+      }
+
+      lastCssWidth = cssWidth;
+      lastCssHeight = cssHeight;
+
+      const mobile = cssWidth < 720;
+      const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.25 : 1.8);
+      const w = Math.max(1, Math.floor(cssWidth * dpr));
+      const h = Math.max(1, Math.floor(cssHeight * dpr));
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
@@ -338,12 +362,12 @@ export default function BlackHoleBackground() {
       }
       gl.uniform2f(resLoc, w, h);
 
-      const mobile = window.innerWidth < 720;
       gl.uniform2f(centerLoc, mobile ? 0.12 : 0.29, mobile ? 0.55 : 0.52);
     };
 
-    window.addEventListener("resize", resize);
-    resize();
+    const handleResize = () => resize(false);
+    window.addEventListener("resize", handleResize, { passive: true });
+    resize(true);
 
     // Loop & Timings
     const started = performance.now();
@@ -398,7 +422,7 @@ export default function BlackHoleBackground() {
     // Unmount Cleanup
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", handleResize);
 
       gl.deleteBuffer(buffer);
       gl.deleteTexture(texture);
@@ -409,11 +433,14 @@ export default function BlackHoleBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 w-full h-full -z-10 pointer-events-none bg-[#03060d]">
+    <div
+      className="fixed top-0 left-0 z-0 w-full pointer-events-none bg-[#03060d]"
+      style={{ height: "100vh", minHeight: "100lvh" }}
+    >
       <canvas
         ref={canvasRef}
         id="blackhole"
-        className="w-full h-full"
+        className="absolute inset-0 block w-full h-full"
         aria-hidden="true"
       />
       {/* Dynamic dark vignette overlay to ensure maximum text contrast over the glowing black hole */}

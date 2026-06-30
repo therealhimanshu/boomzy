@@ -1,16 +1,9 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { 
-  BookOpen, Calendar, Clock, Download, 
-  Mail, Send, Sparkles, CheckCircle2 
+  BookOpen, Calendar, Clock, Download, Sparkles
 } from "lucide-react";
-import IgniteHoverEffect from "./IgniteHoverEffect";
 
 export default function ResourcesSection() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-
   const articles = [
     {
       title: "2026 SEO Blueprint: Optimizing for AI-Driven Conversational Search",
@@ -52,31 +45,6 @@ export default function ResourcesSection() {
       downloads: "850+ Downloads"
     }
   ];
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !email.includes('@')) {
-      setErrorMsg('Please enter a valid business email address.');
-      return;
-    }
-    setErrorMsg('');
-    try {
-      const response = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'resources' }),
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        setErrorMsg(data.message || 'Something went wrong. Please try again.');
-        return;
-      }
-      setSubscribed(true);
-      setEmail('');
-    } catch (err) {
-      setErrorMsg('Network error. Please try again.');
-    }
-  };
 
   return (
     <section 
@@ -147,8 +115,8 @@ export default function ResourcesSection() {
             ))}
           </div>
 
-          {/* Right Column: Downloads & Newsletter */}
-          <div className="lg:col-span-4 flex flex-col gap-6 w-full">
+	          {/* Right Column: Downloads */}
+	          <div className="lg:col-span-4 flex flex-col gap-6 w-full">
             
             {/* Download Card */}
             <div className="p-6 rounded-3xl border border-slate-200/60 dark:border-slate-800 bg-slate-50/50 dark:bg-[#050811]/55 dark:backdrop-blur-md">
@@ -178,65 +146,7 @@ export default function ResourcesSection() {
               </div>
             </div>
 
-            {/* Newsletter Subscription */}
-            <div className="p-6 rounded-3xl border border-slate-200/60 dark:border-slate-800 bg-slate-950 dark:bg-slate-950 text-white relative overflow-hidden flex flex-col justify-between min-h-[220px]">
-              <IgniteHoverEffect />
-              <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-brand-primary/20 to-transparent rounded-bl-full pointer-events-none -z-10" />
-
-              <div>
-                <h3 className="text-lg font-black text-white mb-1 flex items-center gap-1.5">
-                  <Mail className="w-5 h-5 text-brand-primary" />
-                  <span>The Ignite Newsletter</span>
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                  Subscribe to receive our latest 2026 performance playbooks directly in your inbox.
-                </p>
-              </div>
-
-              <AnimatePresence mode="wait">
-                {!subscribed ? (
-                  <motion.form 
-                    key="sub-form"
-                    onSubmit={handleSubscribe} 
-                    className="flex flex-col gap-2"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <div className="relative">
-                      <input 
-                        type="email" 
-                        placeholder="business@email.com" 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full h-11 bg-white/10 border border-white/10 rounded-xl px-4 text-xs focus:outline-none focus:border-brand-primary transition-colors text-white placeholder-slate-500 pr-10"
-                      />
-                      <button 
-                        type="submit"
-                        className="absolute right-1 top-1 w-9 h-9 rounded-lg bg-brand-primary hover:bg-brand-primary/90 flex items-center justify-center text-white transition-colors cursor-pointer"
-                        aria-label="Submit email"
-                      >
-                        <Send className="w-4 h-4" />
-                      </button>
-                    </div>
-                    {errorMsg && <div className="text-[10px] text-rose-400 font-medium px-1">{errorMsg}</div>}
-                  </motion.form>
-                ) : (
-                  <motion.div 
-                    key="sub-success"
-                    className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center gap-3 text-emerald-400 text-xs font-bold"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  >
-                    <CheckCircle2 className="w-5 h-5 shrink-0" />
-                    <span>Welcome! Check your inbox for the Q3 SEO Guide.</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-          </div>
+	          </div>
 
         </div>
 

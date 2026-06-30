@@ -1,8 +1,60 @@
+# Dependencies
 node_modules/
+
+# Build output
 build/
 dist/
 coverage/
-.DS_Store
+.vite/
+.turbo/
+.cache/
+.parcel-cache/
+
+# Logs
+logs/
 *.log
-.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local environment variables and secrets
+.env
+.env.*
 !.env.example
+.dev.vars
+.dev.vars.*
+
+# Cloudflare / Wrangler local state
+.wrangler/
+wrangler.local.toml
+wrangler.*.local.toml
+
+# Google Apps Script / Google API local credentials
+.clasprc.json
+.clasp.json
+credentials*.json
+client_secret*.json
+service-account*.json
+*service-account*.json
+*-credentials.json
+
+# Private keys and certificates
+*.pem
+*.key
+*.p8
+*.p12
+*.crt
+
+# Test artifacts
+playwright-report/
+test-results/
+*.lcov
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

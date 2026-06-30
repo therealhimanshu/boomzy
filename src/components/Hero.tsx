@@ -3,11 +3,12 @@ import { ArrowRight, Bolt, Calendar, Sparkles } from "lucide-react";
 
 interface HeroProps {
   scrolled: boolean;
+  launchComplete: boolean;
   abVariant?: "A" | "B";
   heatmapActive?: boolean;
 }
 
-export default function Hero({ scrolled, abVariant = "A", heatmapActive = false }: HeroProps) {
+export default function Hero({ scrolled, launchComplete, abVariant = "A", heatmapActive = false }: HeroProps) {
   return (
     <section 
       id="hero"
@@ -15,8 +16,8 @@ export default function Hero({ scrolled, abVariant = "A", heatmapActive = false 
     >
       {/* Immersive radial glowing background blobs (Safe, slow, eye-pleasing movement) */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[18%] left-[10%] w-72 h-72 bg-brand-primary/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-float"></div>
-        <div className="absolute bottom-[20%] right-[15%] w-96 h-96 bg-brand-secondary/10 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen" style={{ animationDelay: "2s" }}></div>
+        <div className="hidden sm:block absolute top-[18%] left-[10%] w-56 h-56 md:w-72 md:h-72 bg-brand-primary/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-float"></div>
+        <div className="hidden sm:block absolute bottom-[20%] right-[15%] w-64 h-64 md:w-96 md:h-96 bg-brand-secondary/10 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen" style={{ animationDelay: "2s" }}></div>
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
@@ -34,12 +35,12 @@ export default function Hero({ scrolled, abVariant = "A", heatmapActive = false 
         </motion.div>
 
         {/* LOGO ANCHOR: Centered and magnificent when NOT scrolled */}
-        <div className="h-20 md:h-32 flex items-center justify-center mb-6">
-          {!scrolled ? (
+        <div className="h-20 md:h-28 lg:h-32 flex items-center justify-center mb-6">
+          {launchComplete && !scrolled ? (
             <motion.div
               layoutId="boomzy-logo"
-              className="text-5xl md:text-8xl font-black tracking-tighter uppercase select-none cursor-pointer"
-              transition={{ type: "spring", stiffness: 180, damping: 20 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase select-none cursor-pointer"
+              transition={{ layout: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">
                 Boomzy
@@ -56,7 +57,7 @@ export default function Hero({ scrolled, abVariant = "A", heatmapActive = false 
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-black font-display text-slate-900 dark:text-white max-w-4xl tracking-tight leading-tight mb-8"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-display text-slate-900 dark:text-white max-w-4xl tracking-tight leading-tight mb-8"
         >
           Turning Ambition into <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff8c00] to-[#fcd400]">
@@ -71,7 +72,7 @@ export default function Hero({ scrolled, abVariant = "A", heatmapActive = false 
           transition={{ duration: 0.6, delay: 0.25 }}
           className="text-base sm:text-lg md:text-xl text-slate-650 dark:text-slate-100 max-w-3xl leading-relaxed mb-12"
         >
-          Boomzy Ignite is a full-service performance marketing and conversion engineering agency. We connect paid media campaigns directly to your HubSpot or Salesforce pipeline, minimizing acquisition costs while driving qualified B2B pipeline growth and customer retention.
+          Boomzy is a premier growth marketing agency that specializes in helping businesses scale their operations, increase revenue, and achieve market dominance through innovative strategies and data-driven solutions.
         </motion.p>
 
         {/* Primary Call To Actions */}

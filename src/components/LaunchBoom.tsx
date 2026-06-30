@@ -138,8 +138,9 @@ export default function LaunchBoom({ onComplete, isDark }: LaunchBoomProps) {
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx!.imageSmoothingEnabled = true;
 
+      const impactRatio = width < 640 ? 0.6 : width < 1024 ? 0.68 : 0.79;
       impactX = width * 0.5;
-      impactY = height * 0.79;
+      impactY = height * impactRatio;
       logoCenterY = height * 0.49;
 
       backgroundGradient = ctx!.createRadialGradient(

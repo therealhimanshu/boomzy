@@ -58,3 +58,6 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+
+.dev.vars*
+!.dev.vars.example
